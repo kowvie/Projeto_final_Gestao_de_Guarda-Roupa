@@ -3,11 +3,14 @@
 {% block content %}
 <h2>Apagar Estação</h2>
 
-<p>Apagar "{{ estacao.nome }}"?</p>
+<div class="card p-3 shadow-sm">
+    <p>Tens a certeza que queres apagar a estação "<strong>{{ estacao.nome }}</strong>"?</p>
 
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Sim</button>
-</form>
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger">Sim, apagar</button>
+        <a href="{% url 'estacoes_lista' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
 
 {% endblock %}

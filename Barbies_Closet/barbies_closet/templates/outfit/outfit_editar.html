@@ -3,23 +3,24 @@
 {% block content %}
 <h2>Editar Outfit</h2>
 
-<form method="POST">
-    {% csrf_token %}
-
-    Nome: <input type="text" name="nome" value="{{ outfit.nome }}" required><br><br>
-
-    <h3>Selecionar Peças</h3>
-
-    {% for p in pecas %}
-        <input type="checkbox" name="pecas" value="{{ p.id }}"
-            {% if p in outfit.pecas.all %}checked{% endif %}>
-        {{ p.nome }} ({{ p.categoria }}) <br>
-    {% endfor %}
-
-    <br>
-    <button type="submit">Guardar Alterações</button>
-</form>
-
-<a href="{% url 'lista_outfits' %}">Cancelar</a>
+<div class="card p-4 shadow-sm">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-2">
+            Nome: <input type="text" name="nome" value="{{ outfit.nome }}" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <h3>Selecionar Peças</h3>
+            <div class="form-check">
+                {% for p in pecas %}
+                    <input type="checkbox" name="pecas" value="{{ p.id }}" class="form-check-input" {% if p in outfit.pecas.all %}checked{% endif %}>
+                    <label class="form-check-label">{{ p.nome }} ({{ p.categoria }})</label><br>
+                {% endfor %}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Alterações</button>
+        <a href="{% url 'lista_outfits' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
 
 {% endblock %}

@@ -2,17 +2,21 @@
 
 {% block content %}
 <h2>Outfits</h2>
+<a href="{% url 'criar_outfit' %}" class="btn btn-primary mb-3">Novo Outfit</a>
 
-<a href="{% url 'criar_outfit' %}">Novo Outfit</a>
-
-<ul>
-    {% for o in outfits %}
-        <li>
-            <a href="{% url 'detalhe_outfit' o.id %}">
-                {{ o.nome }}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+<div class="card p-3 shadow-sm mb-3">
+    <ul class="list-group list-group-flush">
+        {% for o in outfits %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ o.nome }}</span>
+                <span>
+                    <a href="{% url 'detalhe_outfit' o.id %}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{% url 'editar_outfit' o.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'apagar_outfit' o.id %}" class="btn btn-danger btn-sm">Apagar</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}

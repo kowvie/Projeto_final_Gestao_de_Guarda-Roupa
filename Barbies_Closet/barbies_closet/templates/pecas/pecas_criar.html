@@ -3,28 +3,42 @@
 {% block content %}
 <h2>Criar Peça</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    Nome: <input type="text" name="nome" required><br>
-    Cor: <input type="text" name="cor" required><br>
-    Marca: <input type="text" name="marca" required><br>
-    Tamanho: <input type="text" name="tamanho" required><br>
-    Data: <input type="date" name="data" required><br>
-
-    Categoria:
-    <select name="categoria">
-        {% for c in categorias %}
-            <option value="{{ c.id }}">{{ c.nome }}</option>
-        {% endfor %}
-    </select>
-
-    Estação:
-    <select name="estacao">
-        {% for e in estacoes %}
-            <option value="{{ e.id }}">{{ e.nome }}</option>
-        {% endfor %}
-    </select>
-
-    <button type="submit">Guardar</button>
-</form>
+<div class="card p-4 shadow-sm">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-2">
+            Nome: <input type="text" name="nome" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            Cor: <input type="text" name="cor" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            Marca: <input type="text" name="marca" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            Tamanho: <input type="text" name="tamanho" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            Data: <input type="date" name="data" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            Categoria:
+            <select name="categoria" class="form-select">
+                {% for c in categorias %}
+                    <option value="{{ c.id }}">{{ c.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-2">
+            Estação:
+            <select name="estacao" class="form-select">
+                {% for e in estacoes %}
+                    <option value="{{ e.id }}">{{ e.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'pecas_lista' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
 {% endblock %}

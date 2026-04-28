@@ -2,18 +2,20 @@
 
 {% block content %}
 <h2>Estações</h2>
+<a href="/estacoes/criar/" class="btn btn-primary mb-3">Nova Estação</a>
 
-<a href="/estacoes/criar/">Nova Estação</a>
-
-<ul>
-    {% for e in estacoes %}
-        <li>
-            {{ e.nome }}
-
-            | <a href="/estacoes/editar/{{ e.id }}/">Editar</a>
-            | <a href="/estacoes/apagar/{{ e.id }}/">Apagar</a>
-        </li>
-    {% endfor %}
-</ul>
+<div class="card p-3 shadow-sm mb-3">
+    <ul class="list-group list-group-flush">
+        {% for e in estacoes %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ e.nome }}</span>
+                <span>
+                    <a href="/estacoes/editar/{{ e.id }}/" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="/estacoes/apagar/{{ e.id }}/" class="btn btn-danger btn-sm">Apagar</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}

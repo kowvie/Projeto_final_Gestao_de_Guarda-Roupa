@@ -3,10 +3,15 @@
 {% block content %}
 <h2>Criar Estação</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    Nome: <input type="text" name="nome">
-    <button type="submit">Guardar</button>
-</form>
+<div class="card p-4 shadow-sm">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-2">
+            Nome: <input type="text" name="nome" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'estacoes_lista' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
 
 {% endblock %}

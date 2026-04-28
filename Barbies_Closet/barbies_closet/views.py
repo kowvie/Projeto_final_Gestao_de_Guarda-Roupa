@@ -146,6 +146,17 @@ def editar_outfit(request, id):
     })
 
 @login_required
+def apagar_outfit(request, id):
+    outfit = get_object_or_404(Outfit, id=id, utilizador=request.user)
+
+    if request.method == 'POST':
+        outfit.delete()
+        messages.success(request, "Outfit apagado com sucesso")
+        return redirect('lista_outfits')
+
+    return render(request, 'outfit/outfit_apagar.html', {'outfit': outfit})
+
+@login_required
 def usar_peca(request, id):
     peca = get_object_or_404(Peca, id=id, utilizador=request.user)
 

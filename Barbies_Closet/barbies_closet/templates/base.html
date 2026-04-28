@@ -1,25 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbies Closet</title>
+    <title>Barbie's Closet</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font (elegante) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffe4ec, #fff);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #ff69b4, #ff1493);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+
+        .btn-outline-light {
+            border-radius: 20px;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        /* Botões */
+        .btn-primary {
+            background-color: #ff69b4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff1493;
+        }
+
+        .btn-success {
+            background-color: #ff85c1;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #ff69b4;
+        }
+
+        .btn-warning {
+            background-color: #ffc0cb;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #ff4d6d;
+            border: none;
+        }
+
+        /* Form */
+        form {
+            background: white;
+            border-radius: 15px;
+        }
+
+        /* Títulos */
+        h1, h2, h3 {
+            color: #d63384;
+            font-weight: 600;
+        }
+
+        /* Alerts */
+        .alert {
+            border-radius: 12px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Gestão de Guarda-Roupa</h1>
-    <nav>
-        <a href="{% url 'lista_pecas' %}">Peças</a> |
-        <a href="{% url 'lista_outfits' %}">Outfits</a> |
-        <a href="{% url 'lista_categorias' %}">Categorias</a> |
-        <a href="{% url 'lista_estacoes' %}">Estações</a>
-    </nav>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">💖 Barbie's Closet</a>
+
+        <div>
+            <a class="btn btn-outline-light btn-sm" href="{% url 'lista_pecas' %}">Peças</a>
+            <a class="btn btn-outline-light btn-sm" href="{% url 'lista_outfits' %}">Outfits</a>
+            <a class="btn btn-outline-light btn-sm" href="{% url 'lista_categorias' %}">Categorias</a>
+            <a class="btn btn-outline-light btn-sm" href="{% url 'lista_estacoes' %}">Estações</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
     {% if messages %}
-        <ul class="messages">
         {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
+            <div class="alert alert-success shadow-sm">
+                {{ message }}
+            </div>
         {% endfor %}
-        </ul>
     {% endif %}
+
     {% block content %}{% endblock %}
+</div>
+
 </body>
 </html>
